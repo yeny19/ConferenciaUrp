@@ -51,6 +51,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     </head>
     <body class="hold-transition skin-green sidebar-mini">
+        
         <div id="navegador">
             <div class="container-fluid">
                 <header class="main-header">
@@ -167,10 +168,10 @@
                                         <h3><%=countTC%></h3>
                                         <p>Tipo de Conferencias</p>
                                     </div>
-                                    <div class="icon">
+                                        <div class="icon" >
                                         <i class="ion ion-person-add"></i>
                                     </div>
-                                    <a href="#" onclick="javascrip:f_openModal();" class="small-box-footer" >Tipo de Conferencia <i class="fa fa-hand-pointer-o text-right"></i></a>
+                                    <a href="#" class="small-box-footer" >Tipo de Conferencia <i class="fa fa-hand-pointer-o text-right"></i></a>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-xs-6">
