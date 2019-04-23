@@ -7,6 +7,7 @@ package dao.implementacion;
 
 
 import dao.DaoFactory;
+import dao.DaoSeccionConferencia;
 import dao.DaoTipoConferencia;
 import dao.DaoUsuario;
 
@@ -25,6 +26,11 @@ public class ODFactory extends DaoFactory{
     @Override
     public DaoTipoConferencia getDaoTipoConferencia() {
         return new ODTipoConferencia();
+    }
+
+    @Override
+    public DaoSeccionConferencia getDaoSeccionConferencia() {
+       return  new ODSeccionConferencia();
     }
     
     

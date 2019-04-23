@@ -21,6 +21,7 @@ public abstract class DaoFactory {
 
 public abstract DaoUsuario getDaoUsuario();
 public abstract DaoTipoConferencia getDaoTipoConferencia();
+public abstract DaoSeccionConferencia getDaoSeccionConferencia();
     
     public static DaoFactory getDaoFactory(int whichFactory) {
 

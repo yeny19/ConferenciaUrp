@@ -8,6 +8,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="dto.dtoUsuario"%>
 <%@page import="comun.Parametros"%>
+<%@taglib uri="/WEB-INF/tlds/libreria.tld" prefix="lb"%>
 <%@page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     response.setHeader("Cache-Control", "no-cache");
@@ -39,6 +40,7 @@
         <link rel="stylesheet" href="<%=request.getContextPath()%>/componentes/dist/css/AdminLTE.min.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/componentes/dist/css/skins/_all-skins.min.css">
         <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet" type="text/css"/>
+        <link href="<%=request.getContextPath()%>/componentes/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css"/>
         <!-- Javascript -->
         <script src="<%=request.getContextPath()%>/componentes/jquery/dist/jquery.min.js"></script>
         <script src="<%=request.getContextPath()%>/componentes/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -47,10 +49,12 @@
         <script src="<%=request.getContextPath()%>/conferencia/menu/conferencia/conferenciaJS.js" type="text/javascript"></script>
         <script src="<%=request.getContextPath()%>/componentes/datatables.net/js/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="<%=request.getContextPath()%>/componentes/datatables.net-bs/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+        <script src="<%=request.getContextPath()%>/componentes/select2/dist/js/select2.full.min.js" type="text/javascript"></script>
         <!-- Google Font -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     </head>
     <body class="hold-transition skin-green sidebar-mini">
+
         <div id="navegador">
             <div class="container-fluid">
                 <header class="main-header">
@@ -62,8 +66,10 @@
                         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                             <span class="sr-only">Toggle navigation</span>
                         </a>
+
                         <div class="navbar-custom-menu">
                             <ul class="nav navbar-nav">
+
                                 <li class="dropdown user user-menu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <img src="<%=request.getContextPath()%>/componentes/dist/img/urp.png" class="user-image" alt="User Image">
@@ -99,7 +105,7 @@
                             </div>
                             <div class="pull-left info">
                                 <p><%=dtoUsuario.getCU_USUARIO()%></p>
-                                <a href="#"><i class="fa fa-circle text-success"></i> En línea</a>
+                                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                             </div>
                         </div>
                         <ul class="sidebar-menu" data-widget="tree">
@@ -126,10 +132,8 @@
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li><a href="<%=request.getContextPath()%>/tipoConferencia"><i class="fa fa-book"></i> Tipo de Conferencia</a></li>
-                                    <li><a href="<%=request.getContextPath()%>/seccionConferencia"><i class="fa fa-book"></i> Sección de Conferencia</a></li>
+                                    <li><a href="#"><i class="fa fa-book"></i> Tipo de Conferencia</a></li>
                                 </ul>
-                            
                             </li>
 
                             <li class="treeview">
@@ -147,6 +151,7 @@
                         </ul>
                     </section>
                 </aside>
+
                 <div class="content-wrapper">
                     <section class="content-header">
                         <h1>
@@ -160,32 +165,50 @@
                     </section>
                     <section class="content">
                         <div class="row" >
-                            <div class="col-lg-3 col-xs-6">
-                                <!-- small box -->
-                                <div class="small-box bg-red">
+                            <div class="col-md-6" >
+                                <div class="small-box bg-aqua" >
                                     <div class="inner">
-                                        <h3>0</h3>
-                                        <p>Cantidad de Asistentes</p>
+                                        <h3><%=countTC%></h3>
+                                        <p>Sección de Conferencias</p>
                                     </div>
-                                    <div class="icon">
-                                        <i class="ion ion-person"></i>
+                                    <div class="icon" >
+                                        <i class="ion ion-person-add"></i>
                                     </div>
-                                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                    <a href="#" class="small-box-footer" >more <i class="fa fa-hand-pointer-o text-right"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="box box-info collapse-box box-solid" id="mostrarPanel">
+                                    <div class="box-header with-border" >
+                                        <h3 class="box-title">Selecionar Tipo de Conferencia</h3>
+                                        <div class="box-tools pull-right">
+
+                                        </div>
+                                    </div>
+                                    <div class="box-body">
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <select class="form-control select2" style="width: 100%;" onchange="javascript:f_MostrarRegistroSC(this.value);">
+                                                    <option value="000000">Seleccione Tipo de Conferencia...</option>
+                                                    <lb:CboTipoConferencia></lb:CboTipoConferencia>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12"  >
+                            <div class="col-md-6">
                                 <div class="box box-info collapse-box box-solid" id="mostrarPanel">
                                     <div class="box-header with-border" >
                                         <h3 class="box-title">Panel</h3>
                                         <div class="box-tools pull-right">
-                                            <button type="button"  class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
-                                            </button>
+
                                         </div>
                                     </div>
-                                    <div class="box-body">
-                                        <table id="example3" class="table table-striped table-condensed table-hover">
+                                    <div class="box-body" id="tablaSC">
+                                        <table id="example2" class="table table-striped table-condensed table-hover">
                                             <thead class="bg-yellow">
                                                 <tr>
                                                     <th class="text-center">Código</th>
@@ -193,19 +216,60 @@
                                                     <th class="text-center">Accion</th>
                                                 </tr>
                                             </thead>
-                                            <tbody class="table-hover">
-                                                <%
-                                                    for (int idx = 0; idx < listaTC.size(); idx++) {
-                                                        dtoTipoConferencia dtoTC = (dtoTipoConferencia) listaTC.get(idx);
-                                                %>
-                                                <tr>
-                                                    <td class="text-center"><%=dtoTC.getCTCONF_CODIGO()%></td>
-                                                    <td><%=dtoTC.getVTCONF_DESLARGA()%></td>
-                                                    <td>PSP</td>
-                                                </tr>
-                                                <%}%>
-                                            </tbody>
                                         </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3"  >
+                                <div class="box box-info collapse-box box-solid" id="mostrarPanel">
+                                    <div class="box-header with-border" >
+                                        <h3 class="box-title">Agregar Sección de Conferencia</h3>
+                                        <div class="box-tools pull-right">
+
+                                        </div>
+                                    </div>
+                                    <div class="box-body">
+                                        <form role="form" method="post" name="frm_TC" class="form-group">
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Sección de Conferencia:</label>
+                                                    <input type="text" class="form-control text-center" id="insertarTC" placeholder="Ingrese Sección de Conferencia">
+                                                </div>
+                                            </div>
+                                            <div class="box-footer">
+                                                <button type="button" class="btn btn-success" onclick="javascript:f_InsertarTipoEncuesta();">Registrar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3" id="contenidoEditar">
+                                <div class="box box-info collapse-box box-solid" id="mostrarPanel">
+                                    <div class="box-header with-border" >
+                                        <h3 class="box-title">Editar Sección de Conferencia</h3>
+                                        <div class="box-tools pull-right">
+                                        </div>
+                                    </div>
+                                    <div class="box-body">
+                                        <form role="form" method="post" name="frm_TC" class="form-group">
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Código de Conferencia:</label>
+                                                    <input type="text" class="form-control text-center" id="insertarTC" name="codigoTC">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Sección de Conferencia:</label>
+                                                    <input type="text" class="form-control text-center" id="insertarTC" name="textTC">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Codigo Tipo de Conferencia:</label>
+                                                    <input type="text" class="form-control text-center" id="insertarTC" name="textTC">
+                                                </div>
+                                            </div>
+                                            <div class="box-footer">
+                                                <button type="button" class="btn btn-success" onclick="javascript:f_InsertarTipoEncuesta();">Modificar</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -214,7 +278,6 @@
                 </div>
             </div>
         </div>
-
         <!---<div class="box box-solid bg-light-blue-gradient">-->
         <div class="modal modal-info fade" id="modal-success">
             <div class="modal-dialog modal-sm">

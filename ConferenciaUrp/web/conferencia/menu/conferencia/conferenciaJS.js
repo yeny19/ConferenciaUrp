@@ -36,6 +36,7 @@ $(document).ready(function () {
             "url": "js/Spanish.json"
         }
     });
+    $('.select2').select2();
 });
 
 function MasInformacionTC() {
@@ -96,10 +97,36 @@ function f_InsertarTipoEncuesta() {
             if (xhr === "error") {
                 var msg = "Error! algo ha sucedido: ";
                 $('#modal-success').html(msg, status);
-            } else{
+            } else {
                 var msg = document.all.retMsj.value;
                 alert(msg);
             }
         });
     }
+}
+
+function f_MostrarRegistroSC(codigoTC) {
+    var reporte = "04";
+    var ruta = ctx_path.concat("/conferencia/menu/conferencia/conferencia_ajax.jsp?pasacache=",
+            new Date().getTime(),
+            "&reporte=", reporte,
+            "&codigoTC=", codigoTC
+            );
+    $('#tablaSC').load(ruta, function (status, xhr) {
+        if (xhr === "error") {
+            var msg = "Error! algo ha sucedido: ";
+            $('#tablaSC').html(msg, status);
+        } else {
+            $('#example2').DataTable({
+                //"scrollY": "135px",
+                //"scrollCollapse": true,
+                //"paging": false,
+                pageLength: 5,
+                lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']],
+                "language": {
+                    "url": "js/Spanish.json"
+                }
+            });
+        }
+    });
 }
