@@ -17,7 +17,7 @@ public interface DaoTipoConferencia {
 
     public abstract Collection ListaTipoConferencia() throws Exception;
     public abstract int CountTipoConferencia() throws Exception;
-    public abstract int insertarTipoEncuesta(dtoTipoConferencia dtoTC) throws SQLException;
+    public abstract int insertarTipoConferencia(dtoTipoConferencia dtoTC) throws SQLException;
 
     //public abstract dtoUsuario verificaClave(String usuario, String clave) throws Exception;
 }

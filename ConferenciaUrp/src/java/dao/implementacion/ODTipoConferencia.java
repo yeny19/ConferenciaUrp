@@ -57,6 +57,7 @@ public class ODTipoConferencia implements DaoTipoConferencia {
 
         } catch (SQLException e) {
             System.out.println(Parametros.S_APP_NOMBRE + " - " + getClass() + ": " + e.toString());
+            
         } finally {
             rs.close();
             cs.close();
@@ -95,7 +96,7 @@ public class ODTipoConferencia implements DaoTipoConferencia {
     }
 
     @Override
-    public int insertarTipoEncuesta(dtoTipoConferencia dtoTC) throws SQLException {
+    public int insertarTipoConferencia(dtoTipoConferencia dtoTC) throws SQLException {
         int retorno = 0;
         try {
             cn = getConnection();

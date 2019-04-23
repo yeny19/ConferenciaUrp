@@ -43,11 +43,7 @@ public class ServletLogin extends HttpServlet {
             String sLogin = request.getParameter("txtUsuario");
             String sClave = request.getParameter("txtClave");
 
-            System.out.println("sLogin " + sLogin);
-            System.out.println("sClave " + sClave);
-
             boolean verificarusuario = objDU.existeUsuario(sLogin);
-            System.out.println("verificarusuario " + verificarusuario);
 
             if (verificarusuario) {
 

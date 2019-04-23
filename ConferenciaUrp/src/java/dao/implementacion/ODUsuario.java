@@ -44,19 +44,15 @@ public class ODUsuario implements DaoUsuario {
             cs.setString(5, "");
             cs.setString(6, "");
             cs.setString(7, "");
-            System.out.println("usuario * " + usuario);
             cs.execute();
             rs = (ResultSet) cs.getObject(1);
             while (rs.next()) {
                 int cantidad = rs.getInt(1);
-                System.out.println("cantidad  " + cantidad);
                 if (cantidad == 1) {
                     retorno = true;
                 }
-                System.out.println("retorno " + retorno);
             }
 
-            System.out.println("usuario " + usuario);
         } catch (SQLException e) {
             System.out.println(Parametros.S_APP_NOMBRE + " - " + getClass() + ": " + e.toString());
         } finally {
@@ -81,8 +77,6 @@ public class ODUsuario implements DaoUsuario {
             cs.setString(6, "");
             cs.setString(7, "");
             cs.execute();
-            System.out.println("usuarioB " + usuario);
-            System.out.println("claveB " + clave);
             rs = (ResultSet) cs.getObject(1);
             while (rs.next()) {
                 dtoUsuario.setCU_CODIGO(rs.getString(1));

@@ -486,9 +486,13 @@
     String tipoConferencia = (String) request.getParameter("tipoConferencia");
     dtoTipoConferencia dtoTC = new dtoTipoConferencia();
     dtoTC.setVTCONF_DESLARGA(tipoConferencia);
-    int retorno = objDTE.insertarTipoEncuesta(dtoTC);
+    int retorno = objDTE.insertarTipoConferencia(dtoTC);
 
-
+    if (retorno == 0) {
+        msg = "Tipo de Conferenica no Insertado";
+    } else if (retorno == 1) {
+        msg = "Tipo de Conferenica Insertado";
+    }
 %>
 <input type="hidden" id="retMsj" name="retMsj" value="<%=msg%>" />
 <%}

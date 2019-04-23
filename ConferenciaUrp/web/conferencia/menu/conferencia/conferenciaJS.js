@@ -96,7 +96,10 @@ function f_InsertarTipoEncuesta() {
             if (xhr === "error") {
                 var msg = "Error! algo ha sucedido: ";
                 $('#modal-success').html(msg, status);
-            } 
+            } else{
+                var msg = document.all.retMsj.value;
+                alert(msg);
+            }
         });
     }
 }
