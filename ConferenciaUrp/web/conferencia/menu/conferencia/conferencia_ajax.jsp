@@ -113,6 +113,8 @@
 
     String codigoTC = (String) request.getParameter("codigoTC");
     ArrayList listaSC = (ArrayList) objDSC.ListarSeccionConferencia(codigoTC);
+    
+    
 
 %>
 <table id="example2" class="table table-striped table-condensed table-hover">
@@ -126,13 +128,13 @@
     <tbody class="table-hover">
         <%            for (int idx = 0; idx < listaSC.size(); idx++) {
                 dtoSeccionConferencia dtoSC = (dtoSeccionConferencia) listaSC.get(idx);
-                if(dtoSC.getCSCONF_CODIGO()== null){
+                if (dtoSC.getCSCONF_CODIGO() == null) {
                     dtoSC.setCSCONF_CODIGO("");
                 }
-                 if(dtoSC.getVSCONF_DESLARGA()== null){
+                if (dtoSC.getVSCONF_DESLARGA() == null) {
                     dtoSC.setVSCONF_DESLARGA("");
                 }
-                  if(dtoSC.getCTCONF_CODIGO()== null){
+                if (dtoSC.getCTCONF_CODIGO() == null) {
                     dtoSC.setCTCONF_CODIGO("");
                 }
         %>
@@ -140,7 +142,7 @@
             <td class="text-center"><%=dtoSC.getCSCONF_CODIGO()%></td>
             <td><%=dtoSC.getVSCONF_DESLARGA()%></td>
             <td><%=dtoSC.getCTCONF_CODIGO()%></td>
-            
+
         </tr>
         <%}%>
     </tbody>
